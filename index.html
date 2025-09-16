@@ -1,0 +1,465 @@
+<!-- Save as: index.html (place Vivek_Kumar_Singh.pdf in same folder) -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Vivek Kumar Singh — Front-end Developer</title>
+  <meta name="description" content="Vivek Kumar Singh — Front-end developer building fast, accessible and user-centric web apps. Projects: Expense Manager, Hotel Booking, To-do App, Smart Resume Ranker." />
+  <meta name="author" content="Vivek Kumar Singh" />
+  <!-- Favicon (inline SVG) -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%2338bdf8'/%3E%3Ctext x='50' y='58' font-size='44' text-anchor='middle' font-family='Arial' fill='%230b1220'%3EV%3C/text%3E%3C/svg%3E">
+  <style>
+    /* ===========================
+       Variables & Reset
+       =========================== */
+    :root{
+      --bg:#0b1220; --card:#0f1724; --muted:#9aa7b2; --accent:#38bdf8; --accent-2:#7c3aed;
+      --glass: rgba(255,255,255,0.04);
+      --success: #22c55e;
+      --maxWidth: 1100px;
+      --radius: 12px;
+      --gap: 1.25rem;
+      --shadow: 0 6px 18px rgba(2,6,23,0.6);
+      --glass-border: rgba(255,255,255,0.04);
+      color-scheme: dark;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg,#071023 0%, #091322 60%);
+      color:#e6eef6;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.5;
+      padding:2rem 1rem;
+    }
+    a{color:var(--accent); text-decoration:none}
+    a:hover{text-decoration:underline}
+    .container{max-width:var(--maxWidth); margin:0 auto;}
+
+/* ===========================
+   Header / Hero
+   =========================== */
+    header{display:flex;gap:var(--gap);align-items:center;justify-content:space-between;margin-bottom:2rem}
+    .brand{display:flex;gap:1rem;align-items:center}
+    .avatar{
+      width:86px;height:86px;border-radius:14px;flex-shrink:0;
+      background:linear-gradient(135deg,var(--accent),var(--accent-2));
+      display:inline-grid;place-items:center;font-weight:700;color:#071122;font-size:34px;
+      box-shadow:var(--shadow);
+    }
+    .headline{line-height:1}
+    .headline h1{margin:0;font-size:1.35rem}
+    .headline p{margin:6px 0 0;color:var(--muted);font-size:0.95rem}
+    .actions{display:flex;gap:0.6rem}
+    .btn{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#021026;border:none;padding:.6rem .9rem;border-radius:10px;cursor:pointer;font-weight:600;box-shadow:0 8px 30px rgba(56,189,248,0.12)}
+    .btn.secondary{background:transparent;border:1px solid var(--glass-border);color:var(--accent);box-shadow:none}
+    .icon-btn{background:transparent;border:1px solid var(--glass-border);padding:.45rem;border-radius:10px;color:var(--muted);cursor:pointer}
+    .small{font-size:.9rem;padding:.45rem .7rem;border-radius:8px}
+
+/* ===========================
+   Layout
+   =========================== */
+    main{display:grid;grid-template-columns: 1fr 360px; gap:1.5rem;align-items:start}
+    @media (max-width:980px){ main{grid-template-columns:1fr} .right-col{order:2} header{flex-direction:column;align-items:flex-start} .actions{margin-top:.6rem} }
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border-radius:var(--radius); padding:1.15rem; box-shadow:var(--shadow); border:1px solid rgba(255,255,255,0.03)}
+    h2{font-size:1.05rem;color:var(--accent);margin:0 0 .7rem}
+
+/* ===========================
+   About
+   =========================== */
+    .about p{color:var(--muted);margin:0 0 .9rem}
+    .badges{display:flex;flex-wrap:wrap;gap:.5rem}
+    .badge{background:rgba(255,255,255,0.03);padding:.35rem .6rem;border-radius:999px;font-weight:600;color:var(--muted);font-size:.85rem;border:1px solid rgba(255,255,255,0.02)}
+
+/* ===========================
+   Skills
+   =========================== */
+    .skills-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.9rem}
+    .skill-row{display:flex;align-items:center;justify-content:space-between;gap:.6rem}
+    .skill-info{min-width:110px}
+    .progress{flex:1;height:10px;background:rgba(255,255,255,0.03);border-radius:999px;overflow:hidden}
+    .progress > span{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent-2));border-radius:999px;transition:width .7s cubic-bezier(.2,.9,.3,1)}
+    .tech-icons{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.6rem}
+    .tech{background:rgba(255,255,255,0.02);padding:.35rem .5rem;border-radius:8px;font-weight:600;color:var(--muted);font-size:.85rem;border:1px solid rgba(255,255,255,0.02)}
+
+/* ===========================
+   Projects
+   =========================== */
+    .projects{display:grid;gap:.9rem}
+    .project-row{display:flex;gap:.9rem;align-items:stretch}
+    .project-thumb{width:136px;height:92px;border-radius:8px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.12));display:grid;place-items:center;color:var(--muted);font-weight:700;border:1px solid rgba(255,255,255,0.02)}
+    .project-body{flex:1}
+    .meta{display:flex;gap:.6rem;flex-wrap:wrap;color:var(--muted);font-size:.87rem;margin-top:.45rem}
+    .pill{background:rgba(255,255,255,0.02);padding:.25rem .5rem;border-radius:999px;font-weight:600;border:1px solid rgba(255,255,255,0.02)}
+
+/* ===========================
+   Timeline (Internships)
+   =========================== */
+    .timeline{display:flex;flex-direction:column;gap:.9rem}
+    .time-item{position:relative;padding-left:1rem;border-left:2px solid rgba(255,255,255,0.03)}
+    .time-item::before{content:'';position:absolute;left:-7px;top:6px;width:12px;height:12px;border-radius:999px;background:var(--accent);border:2px solid rgba(255,255,255,0.03)}
+
+/* ===========================
+   Testimonials / Contact
+   =========================== */
+    .quote{font-style:italic;color:var(--muted);margin:0}
+    form label{display:block;margin-bottom:.35rem;color:var(--muted);font-size:.9rem}
+    input,textarea{width:100%;padding:.6rem;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:inherit;font-size:.95rem}
+    input:focus,textarea:focus{outline:2px solid rgba(56,189,248,0.12);border-color:rgba(56,189,248,0.25)}
+    .foot{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding-top:1rem;color:var(--muted);font-size:.9rem}
+
+/* ===========================
+   Footer
+   =========================== */
+    footer{margin-top:2rem;text-align:center;color:var(--muted);font-size:.9rem}
+
+/* ===========================
+   Utilities & Animations
+   =========================== */
+    .muted{color:var(--muted)} .right-col .card{position:sticky;top:1.1rem}
+    .fade-up{opacity:0;transform:translateY(12px);transition:opacity .6s ease, transform .6s ease}
+    .fade-up.show{opacity:1;transform:none}
+    .metric{display:inline-block;background:linear-gradient(90deg,#0ea5e9,#a78bfa);padding:.45rem .6rem;border-radius:8px;font-weight:700;color:#021026;margin-right:.5rem}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="avatar" aria-hidden="true">V</div>
+        <div class="headline">
+          <h1>Vivek Kumar Singh</h1>
+          <p>Front-end Developer — builds fast, accessible, and user-centric web apps</p>
+          <div class="muted">Noida, Uttar Pradesh • majorvivek4@gmail.com • 9105632050</div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="btn" id="downloadResume">Download Resume</button>
+        <a class="btn secondary" href="https://github.com/Vivek-k-singh-28" target="_blank" rel="noopener">View GitHub</a>
+        <button class="icon-btn" id="themeToggle" title="Toggle theme">🌗</button>
+      </div>
+    </header>
+
+    <main>
+      <!-- LEFT (Main) -->
+      <section class="left-col" aria-labelledby="about">
+        <!-- About -->
+        <div class="card fade-up" id="about">
+          <h2>About</h2>
+          <div class="about">
+            <p>
+              Front-end developer focused on building performant, accessible, and delightful user experiences.
+              I convert complex problems into elegant, maintainable interfaces and ship production-ready code.
+            </p>
+            <div class="badges" aria-hidden="true">
+              <span class="badge">HTML</span><span class="badge">CSS</span><span class="badge">JavaScript</span>
+              <span class="badge">Node.js</span><span class="badge">ChatGPT</span><span class="badge">VS Code</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Skills -->
+        <div class="card fade-up" id="skills" style="margin-top:1rem">
+          <h2>Skills & Tools</h2>
+          <div class="skills-grid" id="skillsGrid">
+            <!-- JS will populate skills with progress bars -->
+          </div>
+
+          <div style="margin-top:.85rem">
+            <small class="muted">Quick tools</small>
+            <div class="tech-icons" id="techIcons">
+              <!-- JS will populate tech icon chips -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Projects -->
+        <div class="card fade-up" id="projects" style="margin-top:1rem">
+          <h2>Selected Projects</h2>
+          <div class="projects" id="projectsList">
+            <!-- JS will render project rows -->
+          </div>
+        </div>
+
+        <!-- Internships / Timeline -->
+        <div class="card fade-up" style="margin-top:1rem">
+          <h2>Internships & Experience</h2>
+          <div class="timeline" id="timeline">
+            <!-- JS timeline entries -->
+          </div>
+        </div>
+
+        <!-- Education & Certs -->
+        <div class="card fade-up" style="margin-top:1rem;display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+          <div>
+            <h2>Education</h2>
+            <ul class="muted" style="padding-left:1rem">
+              <li><strong>BCA (Computers)</strong>, Amity Online University — 2025</li>
+              <li><strong>Class XII</strong>, G.D. Goenka Public School — 2023</li>
+              <li><strong>Class X</strong>, G.D. Goenka Public School — 2021</li>
+            </ul>
+          </div>
+          <div>
+            <h2>Certifications</h2>
+            <ul style="padding-left:1rem">
+              <li><a href="https://www.1stop.ai/verify-qrcode/yryjTlUEd2" target="_blank">Front-end Internship Certificate</a></li>
+              <li><a href="https://www.1stop.ai/verify-qrcode/yryjTlUEd2" target="_blank">Backend Internship Certificate</a></li>
+              <li class="muted">Advanced Excel, Professional & Life Skills</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- RIGHT (Sidebar) -->
+      <aside class="right-col">
+        <div>
+          <h2>Contact</h2>
+          <p class="muted">I'm available for full-time roles and contract projects. Recruiters: preferred contact via email or LinkedIn.</p>
+
+          <form id="contactForm" onsubmit="return submitForm(event)" style="margin-top:.8rem">
+            <label for="name">Your name</label>
+            <input id="name" placeholder="Jane Doe" required>
+            <label for="email" style="margin-top:.5rem">Your email</label>
+            <input id="email" type="email" placeholder="you@company.com" required>
+            <label for="message" style="margin-top:.5rem">Message</label>
+            <textarea id="message" rows="4" placeholder="Quick note or job details…" required></textarea>
+            <div style="display:flex;gap:.6rem;margin-top:.7rem">
+              <button class="btn small" type="submit">Send as Email</button>
+              <button type="button" class="btn secondary small" id="copyEmail">Copy Email</button>
+            </div>
+          </form>
+
+          <div style="margin-top:1rem;border-top:1px solid rgba(255,255,255,0.02);padding-top:.9rem">
+            <div>Quick contact</div>
+            <div style="margin-top:.45rem;display:flex;gap:.5rem;flex-direction:column">
+              <a href="mailto:majorvivek4@gmail.com">majorvivek4@gmail.com</a>
+              <a href="tel:+919105632050">+91 91056 32050</a>
+              <a href="https://www.linkedin.com/in/vivek-kumar-singh-7b644a2a6" target="_blank">LinkedIn profile</a>
+              <a href="https://github.com/Vivek-k-singh-28" target="_blank">GitHub</a>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top:1rem">
+          <h2>Key Metrics</h2>
+          <p><span class="metric">+40% </span> Recruitment efficiency (Smart Resume Ranker)</p>
+          <p style="margin-top:.45rem"><span class="metric">+50% </span> Engagement (Hotel Booking platform)</p>
+          <p style="margin-top:.45rem"><span class="metric">25% </span> Reduced dev time using tools & automation</p>
+        </div>
+
+        <div style="margin-top:1rem">
+          <h2>Top Tools</h2>
+          <div style="display:flex;flex-direction:column;gap:.5rem;margin-top:.5rem">
+            <div class="skill-row"><div class="skill-info">ChatGPT</div><div class="progress" aria-hidden="true"><span style="width:80%"></span></div></div>
+            <div class="skill-row"><div class="skill-info">GitHub</div><div class="progress" aria-hidden="true"><span style="width:60%"></span></div></div>
+            <div class="skill-row"><div class="skill-info">VS Code</div><div class="progress" aria-hidden="true"><span style="width:85%"></span></div></div>
+            <div class="skill-row"><div class="skill-info">Advanced Excel</div><div class="progress" aria-hidden="true"><span style="width:70%"></span></div></div>
+          </div>
+        </div>
+
+      </aside>
+    </main>
+
+    <footer>
+      <div class="muted">© 2025 Vivek Kumar Singh — Built with HTML • CSS • JavaScript</div>
+    </footer>
+  </div>
+
+  <script>
+    /******* Data (from CV) *******/
+    const skills = [
+      { name: 'JavaScript', pct: 85 },
+      { name: 'HTML', pct: 95 },
+      { name: 'CSS', pct: 90 },
+      { name: 'ChatGPT', pct: 80, rating:'4/5' },
+      { name: 'GitHub', pct: 60, rating:'3/5' },
+      { name: 'Node.js', pct: 65 },
+      { name: 'Advanced Excel', pct: 70 }
+    ];
+
+    const techChips = ['HTML5','CSS3','JavaScript','Node.js','Flask','PHP','Git','VS Code','ChatGPT'];
+
+    const projects = [
+      {
+        title: 'Personal Expense Manager',
+        desc: 'HTML, CSS, JavaScript — Improved UX by 30%. Used ChatGPT for ideation & features.',
+        demo: 'https://vivek-k-singh-28.github.io/Expense-Tracker/',
+        repo: 'https://github.com/Vivek-k-singh-28/Expense-Tracker',
+        metrics: ['UX +30%','Feature ideation: ChatGPT']
+      },
+      {
+        title: 'Hotel Booking Platform',
+        desc: 'PHP + ChatGPT integration — engagement +50%, performance improvements +40%.',
+        demo: 'https://github.com/Vivek-k-singh-28/Hotel-Booking-Platform/',
+        repo: 'https://github.com/Vivek-k-singh-28/Hotel-Booking-Platform',
+        metrics: ['Engagement +50%','Perf +40%']
+      },
+      {
+        title: 'To-Do List Web App',
+        desc: 'Responsive To-Do app using vanilla JS; dev time reduced by 25% with tooling.',
+        demo: 'https://vivek-k-singh-28.github.io/To-Do-List/',
+        repo: 'https://github.com/Vivek-k-singh-28/To-Do-List',
+        metrics: ['Engagement +40%','Dev time -25%']
+      },
+      {
+        title: 'Single Page Showcase Platform',
+        desc: 'SPAs and UI optimizations; debugging with VS Code & ChatGPT reduced dev time by 30%.',
+        demo: 'https://vivek-k-singh-28.github.io/Single-Page-Showcase-/',
+        repo: 'https://github.com/Vivek-k-singh-28/Single-Page-Showcase-',
+        metrics: ['Engagement +25%','Dev time -30%']
+      },
+      {
+        title: 'Smart Resume Ranker',
+        desc: 'LLM + Flask — improved candidate matching accuracy by 25% and recruitment efficiency by 40%.',
+        demo: '#',
+        repo: '#',
+        metrics: ['Accuracy +25%','Recruitment +40%']
+      }
+    ];
+
+    const timeline = [
+      { role:'Front-end Intern', company:'Raise Digital', period:'Jul — Sep 2025', desc:'Architected responsive web apps; increased engagement by 25%.' },
+      { role:'Backend Intern', company:'Worisgo', period:'Jul — Sep 2025', desc:'Optimized backend services with Node.js; response times -25%.' },
+      { role:'Intern', company:'InLighnX Global Pvt. Ltd.', period:'May — Jun 2025', desc:'Built Smart Resume Ranker (ML/NLP); recruitment efficiency +40%.' }
+    ];
+
+    /******* Render Skills *******/
+    const skillsGrid = document.getElementById('skillsGrid');
+    skills.forEach(s => {
+      const wrapper = document.createElement('div');
+      wrapper.className = 'skill-row';
+      wrapper.innerHTML = `
+        <div class="skill-info"><strong>${s.name}</strong></div>
+        <div class="progress" aria-hidden="true"><span style="width:0%"></span></div>
+      `;
+      skillsGrid.appendChild(wrapper);
+      // animate width a tick later (for reveal)
+      requestAnimationFrame(() => setTimeout(()=> wrapper.querySelector('span').style.width = s.pct + '%', 120));
+    });
+
+    // tech chips
+    const techIcons = document.getElementById('techIcons');
+    techChips.forEach(t => {
+      const el = document.createElement('div');
+      el.className = 'tech';
+      el.textContent = t;
+      techIcons.appendChild(el);
+    });
+
+    /******* Render Projects *******/
+    const projectsList = document.getElementById('projectsList');
+    projects.forEach(p => {
+      const row = document.createElement('div');
+      row.className = 'project-row';
+      row.innerHTML = `
+        <div class="project-thumb" aria-hidden="true">IMG</div>
+        <div class="project-body">
+          <div style="display:flex;justify-content:space-between;align-items:start;gap:.5rem">
+            <h3 style="margin:0">${p.title}</h3>
+            <div style="display:flex;gap:.4rem">
+              <a class="pill" href="${p.demo}" target="_blank" rel="noopener">Live</a>
+              <a class="pill" href="${p.repo}" target="_blank" rel="noopener">Code</a>
+            </div>
+          </div>
+          <div style="margin-top:.45rem;color:var(--muted)">${p.desc}</div>
+          <div class="meta" aria-hidden="true">${p.metrics.map(m=>`<span class="pill">${m}</span>`).join('')}</div>
+        </div>
+      `;
+      projectsList.appendChild(row);
+    });
+
+    /******* Timeline *******/
+    const timelineEl = document.getElementById('timeline');
+    timeline.forEach(t => {
+      const div = document.createElement('div');
+      div.className = 'time-item';
+      div.innerHTML = `<strong>${t.role} — ${t.company}</strong><div class="muted" style="font-size:.9rem;margin-top:.25rem">${t.period}</div><div style="margin-top:.5rem">${t.desc}</div>`;
+      timelineEl.appendChild(div);
+    });
+
+    /******* Scroll reveal *******/
+    const revealEls = document.querySelectorAll('.fade-up');
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e=>{
+        if(e.isIntersecting){ e.target.classList.add('show'); obs.unobserve(e.target) }
+      });
+    }, {threshold:0.12});
+    revealEls.forEach(el => obs.observe(el));
+
+    /******* Theme Toggle (light/dark) *******/
+    const themeToggle = document.getElementById('themeToggle');
+    const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+    const saved = localStorage.getItem('vk_theme');
+    const setTheme = (theme) => {
+      if(theme === 'light'){
+        document.documentElement.style.setProperty('--bg','#f8fafc');
+        document.documentElement.style.setProperty('--card','#ffffff');
+        document.documentElement.style.setProperty('--text','#071122');
+        document.documentElement.style.setProperty('--muted','#475569');
+        document.documentElement.style.setProperty('--shadow','0 6px 18px rgba(2,6,23,0.06)');
+        document.documentElement.style.setProperty('color-scheme','light');
+        themeToggle.textContent = '🌗';
+      } else {
+        // restore defaults from CSS variables (dark)
+        document.documentElement.style.removeProperty('--bg');
+        document.documentElement.style.removeProperty('--card');
+        document.documentElement.style.removeProperty('--text');
+        document.documentElement.style.removeProperty('--muted');
+        document.documentElement.style.removeProperty('--shadow');
+        document.documentElement.style.setProperty('color-scheme','dark');
+        themeToggle.textContent = '🌗';
+      }
+      localStorage.setItem('vk_theme', theme);
+    };
+    setTheme(saved || (prefersLight ? 'light' : 'dark'));
+    themeToggle.addEventListener('click', ()=> setTheme((localStorage.getItem('vk_theme') === 'light') ? 'dark' : 'light'));
+
+    /******* Contact form: open mailto *******/
+    function submitForm(e){
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+      const subject = encodeURIComponent(`Portfolio contact — ${name}`);
+      const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}\n\n— Sent from portfolio`);
+      window.location.href = `mailto:majorvivek4@gmail.com?subject=${subject}&body=${body}`;
+      return false;
+    }
+
+    // Copy email button
+    document.getElementById('copyEmail').addEventListener('click', async () => {
+      try { await navigator.clipboard.writeText('majorvivek4@gmail.com'); alert('Email copied to clipboard'); }
+      catch { prompt('Copy this email:', 'majorvivek4@gmail.com'); }
+    });
+
+    // Download resume: assumes Vivek_Kumar_Singh.pdf or Vivek Kumar Singh.pdf in same folder
+    document.getElementById('downloadResume').addEventListener('click', ()=>{
+      // prefer exact name user uploaded
+      const names = ['Vivek_Kumar_Singh.pdf', 'Vivek Kumar Singh.pdf', 'Vivek Kumar Singh Resume.pdf'];
+      // try fetch to detect which exists
+      (async function(){
+        for(const n of names){
+          try{
+            const res = await fetch(n, {method:'HEAD'});
+            if(res.ok){ window.location.href = n; return; }
+          } catch(e){}
+        }
+        // fallback: open mailto if no file found
+        alert('Resume file not found in the site folder.\nPlease place "Vivek_Kumar_Singh.pdf" next to this index.html, or update the download link.');
+      })();
+    });
+
+    /******* Accessibility: focus outlines *******/
+    document.body.addEventListener('keyup', (e) => {
+      if(e.key === 'Tab') document.documentElement.style.setProperty('--focus-outline','2px solid rgba(56,189,248,0.24)');
+    });
+
+    /******* Analytics (developer: add your GA id here) *******/
+    // Example placeholder. To enable analytics, add the GA script here.
+  </script>
+</body>
+</html>
